@@ -55,3 +55,48 @@ const posts = [
         "created": "2021-03-05"
     }
 ];
+
+/**
+ * 1 faccio una funzione per creare il post
+ * 2 faccio un'altra funzione che si occupa di creare html di ogni post
+ * 3 stampo tutti i post
+ */
+
+createPost();
+
+function createPost (){
+    //reset ambiente dove stampo la prima volta
+    //document.querySelector('.team-container').innerHTML = '';
+  
+    //1 eseguo ciclo su array per leggerne il contenuto
+    for(let index in posts){
+        const post = posts[index];
+        console.log('post', post);
+    
+        const id = post.id;
+        const content = post.content;
+        const media = post.media;
+        const authorName = post.author.name;
+        const authorImage = post.author.image;
+        const likes = post.likes;
+        const created = post.created;
+        
+        console.log('id:', id);
+        console.log('content:', content);
+        console.log('media:', media);
+        console.log('author name:', authorName);
+        console.log('authoer image:', authorImage);
+        console.log('likes:', likes);
+        console.log('date:', created);
+        console.log('----->');
+    
+        //delego alla seconda funzione la parte html di ogni post
+        generateHtml(post);  
+    }
+}
+
+function generateHtml(target){
+
+
+    
+}
