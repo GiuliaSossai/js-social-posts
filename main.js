@@ -73,19 +73,21 @@ function createPost (){
         const post = posts[index];
         console.log('post', post);
     
-        const id = post.id;
+        //const id = post.id;
         const content = post.content;
         const media = post.media;
-        const authorName = post.author.name;
-        const authorImage = post.author.image;
+        const author = post['author'];
+        const nameAuthor = author.name;
+        const imageAuthor = author.image;
         const likes = post.likes;
         const date = post.created;
         
-        console.log('id:', id);
+        //console.log('id:', id);
         console.log('content:', content);
         console.log('media:', media);
-        console.log('author name:', authorName);
-        console.log('author image:', authorImage);
+        console.log('author', author);
+        console.log('name:', nameAuthor);
+        console.log('img autore:', imageAuthor);
         console.log('likes:', likes);
         console.log('date:', date);
         console.log('----->');
@@ -106,7 +108,7 @@ function generateHtml(target){
     let mainContent = container.innerHTML;
 
     //destrutturo oggetto-target (ovvero il mio post)
-    const {id, content, media, authorName, authorImage, likes, date} = target;
+    const {content, media, nameAuthor, imageAuthor, likes, date} = target;
     console.log('post', target);
 
     //definisco struttura html di mainContent
@@ -115,10 +117,10 @@ function generateHtml(target){
         <div class="post__header">
             <div class="post-meta">                    
                 <div class="post-meta__icon">
-                    <img class="profile-pic" src="${authorImage}" alt="${authorName}">                    
+                    <img class="profile-pic" src="${imageAuthor}" alt="${nameAuthor}">                    
                 </div>
                 <div class="post-meta__data">
-                    <div class="post-meta__author">${authorName}</div>
+                    <div class="post-meta__author">${nameAuthor}</div>
                     <div class="post-meta__time">${date}</div>
                 </div>                    
             </div>
