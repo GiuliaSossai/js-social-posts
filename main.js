@@ -82,6 +82,9 @@ function createPost (){
         const likes = post.likes;
         const date = post.created;
         
+        // let newDate = date.toLocaleString();
+        // console.log(newDate);
+        
         //console.log('id:', id);
         console.log('content:', content);
         console.log('media:', media);
@@ -108,7 +111,8 @@ function generateHtml(target){
     let mainContent = container.innerHTML;
 
     //destrutturo oggetto-target (ovvero il mio post)
-    const {content, media, nameAuthor, imageAuthor, likes, date} = target;
+    const {content, media, author, likes, created} = target;
+    
     console.log('post', target);
 
     //definisco struttura html di mainContent
@@ -117,11 +121,11 @@ function generateHtml(target){
         <div class="post__header">
             <div class="post-meta">                    
                 <div class="post-meta__icon">
-                    <img class="profile-pic" src="${imageAuthor}" alt="${nameAuthor}">                    
+                    <img class="profile-pic" src="${author.image}" alt="${author.name}">                    
                 </div>
                 <div class="post-meta__data">
-                    <div class="post-meta__author">${nameAuthor}</div>
-                    <div class="post-meta__time">${date}</div>
+                    <div class="post-meta__author">${author.name}</div>
+                    <div class="post-meta__time">${created.split("-").reverse().join("-")}</div>
                 </div>                    
             </div>
         </div>
