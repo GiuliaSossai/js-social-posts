@@ -66,7 +66,7 @@ createPost();
 
 function createPost (){
     //reset ambiente dove stampo la prima volta
-    //document.querySelector('.team-container').innerHTML = '';
+    //document.getElementById('container').innerHTML = '';
   
     //1 eseguo ciclo su array per leggerne il contenuto
     for(let index in posts){
@@ -79,15 +79,15 @@ function createPost (){
         const authorName = post.author.name;
         const authorImage = post.author.image;
         const likes = post.likes;
-        const created = post.created;
+        const date = post.created;
         
         console.log('id:', id);
         console.log('content:', content);
         console.log('media:', media);
         console.log('author name:', authorName);
-        console.log('authoer image:', authorImage);
+        console.log('author image:', authorImage);
         console.log('likes:', likes);
-        console.log('date:', created);
+        console.log('date:', date);
         console.log('----->');
     
         //delego alla seconda funzione la parte html di ogni post
@@ -96,7 +96,54 @@ function createPost (){
 }
 
 function generateHtml(target){
+    //leggo il contenuto del container
+    //genero html per ogni post
+    //ogni volta aggiungo un post sotto al contenuto già presente
+  
+    const container = document.getElementById('container');
+
+    //stabilisco che ogni post andrà in coda a quello che già è presente nel container con una variabile
+    let mainContent = container.innerHTML;
+
+    //destrutturo oggetto-target (ovvero il mio post)
+    const {id, content, media, authorName, authorImage, likes, date} = target;
+    console.log('post', target);
+
+    //definisco struttura html di mainContent
+    mainContent += `
+    <div class="post">
+        <div class="post__header">
+            <div class="post-meta">                    
+                <div class="post-meta__icon">
+                    <img class="profile-pic" src="${authorImage}" alt="${authorName}">                    
+                </div>
+                <div class="post-meta__data">
+                    <div class="post-meta__author">${authorName}</div>
+                    <div class="post-meta__time">${date}</div>
+                </div>                    
+            </div>
+        </div>
+        <div class="post__text">${content}</div>
+        <div class="post__image">
+            <img src="${media}" alt="">
+        </div>
+        <div class="post__footer">
+            <div class="likes js-likes">
+                <div class="likes__cta">
+                    <a class="like-button  js-like-button" href="#" data-postid="1">
+                        <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                        <span class="like-button__label">Mi Piace</span>
+                    </a>
+                </div>
+                <div class="likes__counter">
+                    Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
+                </div>
+            </div> 
+        </div>            
+    </div>
+    `;
+
+    container.innerHTML = mainContent;
 
 
-    
 }
