@@ -64,6 +64,10 @@ const posts = [
 
 createPost();
 
+const like = document.querySelector('.fa-thumbs-up');
+console.log(like);
+like.addEventListener('click', doLike);
+
 function createPost (){
     //reset ambiente dove stampo la prima volta
     //document.getElementById('container').innerHTML = '';
@@ -152,4 +156,9 @@ function generateHtml(target){
     container.innerHTML = mainContent;
 
 
+}
+
+function doLike (event){
+    console.log('hai cliccato pollice su!');
+    
 }
