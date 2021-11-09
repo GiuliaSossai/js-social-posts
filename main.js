@@ -62,6 +62,32 @@ const posts = [
  * 3 stampo tutti i post
  */
 
+const authorImage = (userData) => {
+    const {name, image} = userData;
+    return `<img class="profile-pic" src="${image}" alt="${name}"> `;
+}
+
+const authorDefaultImage = (userData) => {
+   /*
+        1. splittare nome e cognome in array
+        2. prendere le iniziali di ogni parola presente in questo array
+        3. concatere le iniziali in una unica stringa
+        4. stampare il default
+     */
+
+    const {name} = userData;
+    const nameParts = name.split(' ');
+    let initials = '';
+    for(let namePart of nameParts){
+        initials += namePart.charAt(0);
+    } 
+
+    return `<div class="profile-pic-default">
+                <span>${initials}</span>
+            </div>`;
+
+}
+
 createPost();
 
 const like = document.querySelector('.fa-thumbs-up');
@@ -125,7 +151,7 @@ function generateHtml(target){
         <div class="post__header">
             <div class="post-meta">                    
                 <div class="post-meta__icon">
-                    <img class="profile-pic" src="${author.image}" alt="${author.name}">                    
+                ${author.image ? authorImage(author) : authorDefaultImage(author)}          
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${author.name}</div>
